@@ -1,0 +1,13 @@
+[Unit]
+Description=TrackPoint Gunicorn
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/opt/app
+EnvironmentFile=/etc/tpms.env
+ExecStart=/opt/app/venv/bin/gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 2
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
